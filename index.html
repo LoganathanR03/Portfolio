@@ -9,8 +9,8 @@
     body {
       margin: 0;
       font-family: 'Montserrat', sans-serif;
-      background: linear-gradient(135deg, #ece9e6 0%, #ffffff 100%);
-      color: #222;
+      background: linear-gradient(135deg, #1f1c2c, #928dab);
+      color: #fff;
       overflow-x: hidden;
     }
     header {
@@ -51,14 +51,16 @@
     nav a {
       color: #fff;
       text-decoration: none;
-      margin: 0 20px;
+      margin: 0 16px;
       font-weight: 700;
       font-size: 1em;
       position: relative;
       transition: color .2s;
+      padding-bottom: 4px;
     }
-    nav a:hover {
+    nav a.active, nav a:hover {
       color: #ffd700;
+      border-bottom: 2px solid #ffd700;
     }
     section {
       padding: 60px 20px 40px 20px;
@@ -67,6 +69,7 @@
       opacity: 0;
       transform: translateY(30px);
       transition: all .9s cubic-bezier(.19,.89,.32,1.28);
+      background: none;
     }
     section.visible {
       opacity: 1;
@@ -75,7 +78,7 @@
     .section-title {
       font-size: 2em;
       margin-bottom: 30px;
-      color: #4b4b4b;
+      color: #ffd700;
       letter-spacing: 1px;
       position: relative;
     }
@@ -84,15 +87,79 @@
       display: block;
       width: 80px;
       height: 3px;
-      background: linear-gradient(90deg, #232526 0%, #ffd700 100%);
+      background: linear-gradient(90deg, #928dab 0%, #ffd700 100%);
       margin-top: 8px;
       border-radius: 5px;
+    }
+    #home {
+      background: linear-gradient(90deg, #232526 0%, #928dab 100%);
+      color: #fff;
+      border-radius: 0 0 50px 50px;
+      box-shadow: 0 8px 24px rgba(35,37,38,0.08);
+      padding-top: 80px;
+      padding-bottom: 80px;
+      text-align: center;
+      font-size: 1.3em;
+      margin-bottom: 30px;
+      opacity: 1;
+      transform: none;
+    }
+    #home h2 {
+      font-size: 2.2em;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: 2px;
+      color: #ffd700;
+      text-shadow: 0 2px 8px #23252655;
+    }
+    #home p {
+      font-size: 1.18em;
+      color: #fff;
+      max-width: 700px;
+      margin: auto;
+      margin-bottom: 18px;
     }
     .about-content {
       font-size: 1.18em;
       line-height: 1.7;
-      color: #333;
+      color: #f3f3f3;
       max-width: 700px;
+    }
+    .education-timeline {
+      margin-top: 20px;
+      border-left: 3px solid #ffd700;
+      padding-left: 30px;
+    }
+    .education-item {
+      margin-bottom: 30px;
+      position: relative;
+      animation: fadeInCard 1s;
+    }
+    .education-item:before {
+      content: '';
+      position: absolute;
+      left: -38px;
+      top: 4px;
+      width: 18px;
+      height: 18px;
+      background: #ffd700;
+      border-radius: 50%;
+      box-shadow: 0 2px 8px #ffd70055;
+    }
+    .education-degree {
+      font-weight: 700;
+      color: #ffd700;
+      font-size: 1.2em;
+    }
+    .education-meta {
+      font-size: 1em;
+      color: #e0e0e0;
+      margin-bottom: 6px;
+    }
+    .education-desc {
+      color: #fff;
+      font-size: 1em;
+      margin-bottom: 4px;
     }
     .projects-grid {
       display: grid;
@@ -101,15 +168,19 @@
       margin-top: 18px;
     }
     .project-card {
-      background: #fff;
+      background: #232526;
       border-radius: 16px;
-      padding: 24px 20px;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.09);
+      padding: 24px 20px 18px 20px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.19);
       transition: transform .3s, box-shadow .3s;
       cursor: pointer;
       position: relative;
       opacity: 0;
       transform: scale(0.95);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 1.5px solid #928dab44;
     }
     .project-card.visible {
       opacity: 1;
@@ -119,18 +190,34 @@
     @keyframes fadeInCard { from { opacity: 0; transform: scale(0.92); } to { opacity: 1; transform: scale(1); } }
     .project-card:hover {
       transform: translateY(-8px) scale(1.04);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.19);
       border-color: #ffd700;
+    }
+    .project-img {
+      width: 100%;
+      max-width: 240px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(232, 232, 232, 0.15);
+      margin-bottom: 12px;
+      background: #eee;
+      border: 2px solid #928dab44;
+      transition: border .2s;
+    }
+    .project-card:hover .project-img {
+      border: 2px solid #ffd700;
     }
     .project-title {
       font-size: 1.3em;
       font-weight: 700;
       margin-bottom: 10px;
-      color: #232526;
+      color: #ffd700;
+      text-align: center;
     }
     .project-link {
       display: inline-block;
-      color: #ffd700;
+      color: #928dab;
       font-weight: 700;
       margin-top: 12px;
       text-decoration: none;
@@ -138,7 +225,7 @@
       transition: color .2s;
     }
     .project-link:hover {
-      color: #232526;
+      color: #ffd700;
       text-decoration: underline;
     }
     .skills-list {
@@ -149,38 +236,137 @@
     }
     .skill-item {
       background: #232526;
-      color: #fff;
+      color: #ffd700;
       padding: 10px 22px;
       border-radius: 18px;
       font-weight: 500;
       letter-spacing: 1px;
       font-size: 1em;
       box-shadow: 0 2px 10px rgba(35,37,38,0.12);
-      transition: background .2s;
+      transition: background .2s, color .2s;
     }
     .skill-item:hover {
       background: #ffd700;
       color: #232526;
-    }
-    .contact-info {
-      font-size: 1.15em;
-      margin-top: 20px;
-      color: #444;
-    }
-    .contact-info a {
-      color: #232526;
-      font-weight: bold;
-      text-decoration: none;
-    }
-    .contact-info a:hover {
-      text-decoration: underline;
-      color: #ffd700;
     }
     @media (max-width: 600px) {
       .projects-grid { grid-template-columns: 1fr; }
       header h1 { font-size: 2em; }
       .section-title { font-size: 1.3em; }
       body { font-size: 15px; }
+      #home h2 { font-size: 1.3em; }
+    }
+    #get-in-touch {
+      padding: 60px 20px 40px 20px;
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+      color: #fff;
+      margin-bottom: 0;
+    }
+    .get-in-touch-title {
+      font-size: 2em;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+    .get-in-touch-underline {
+      width: 60px;
+      height: 3px;
+      margin: 0 auto 18px auto;
+      background: linear-gradient(90deg, #928dab 0%, #fff 100%);
+      border-radius: 6px;
+    }
+    .get-in-touch-subtext {
+      font-size: 1.15em;
+      color: #f3f3f3;
+      margin-bottom: 38px;
+    }
+    .get-in-touch-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 32px;
+      margin-bottom: 20px;
+    }
+    .get-in-touch-card {
+      background: #232526;
+      border-radius: 15px;
+      padding: 34px 34px 26px 34px;
+      min-width: 240px;
+      max-width: 320px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(35,37,38,0.19);
+      border: 1.5px solid #928dab44;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform .2s, border .2s;
+    }
+    .get-in-touch-card:hover {
+      transform: translateY(-8px) scale(1.04);
+      border: 1.5px solid #fff;
+    }
+    .get-in-touch-icon {
+      background: linear-gradient(135deg, #928dab 0%, #232526 100%);
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .get-in-touch-label {
+      font-size: 1.1em;
+      font-weight: bold;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+    .get-in-touch-link {
+      font-size: 1.05em;
+      color: #928dab;
+      text-decoration: none;
+      word-break: break-all;
+      margin-bottom: 4px;
+      transition: color .2s;
+    }
+    .get-in-touch-link:hover {
+      color: #ffd700;
+      text-decoration: underline;
+    }
+    .main-footer {
+      background: #232526;
+      color: #fff;
+      text-align: center;
+      padding: 18px 0 12px 0;
+      font-size: 1em;
+      border-top: 1.5px solid #928dab44;
+    }
+    .footer-text {
+      margin-bottom: 10px;
+      font-size: 1em;
+      color: #fff;
+    }
+    .footer-icons {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      margin-top: 6px;
+    }
+    .footer-icons a {
+      transition: transform .2s;
+      display: inline-flex;
+      align-items: center;
+    }
+    .footer-icons a:hover svg {
+      fill: #ffd700;
+      transform: scale(1.15);
+    }
+    @media (max-width: 750px) {
+      .get-in-touch-cards {
+        flex-direction: column;
+        gap: 20px;
+      }
     }
   </style>
 </head>
@@ -188,18 +374,53 @@
   <header>
     <img src="Profile pic.jpg" alt="Loganathan R" class="profile-img" />
     <h1>Loganathan R</h1>
-    <p>Data Analyst</p>
+    <p>Data Science Graduate | Web Developer | Data Analyst</p>
     <nav>
+      <a href="#home" class="active">Home</a>
       <a href="#about">About</a>
+      <a href="#education">Education</a>
       <a href="#projects">Projects</a>
       <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
+      <a href="#get-in-touch">Get In Touch</a>
     </nav>
   </header>
+
+  <section id="home">
+    <h2>Welcome to My Portfolio!</h2>
+    <p>
+      Hi, I'm Loganathan R. Explore my projects, education, and skills in web development, data analysis, and analytics.
+    </p>
+  </section>
+
   <section id="about">
     <div class="section-title">About Me</div>
     <div class="about-content">
-      Hi, I'm Loganathan R, a detail-oriented and highly motivated Data Analyst with foundational skills in Python (Pandas, NumPy, Matplotlib, Seaborn), SQL, and Excel, seeking an entry-level position to apply data analysis, visualization, and problem-solving abilities. Eager to contribute to data-driven decision-making and support business growth by transforming raw data into actionable insights. I love exploring new technologies and solving real-world problems with code. My GitHub showcases my works in my intersesed fields.
+      I am a highly motivated Commerce graduate specializing in Information Technology. I am passionate about leveraging 
+      analytics and technology to solve real-world problems. Detail-oriented and highly motivated with foundational skills in Python (Pandas,
+      NumPy, Matplotlib, Seaborn), SQL, and Excel, seeking an entry-level position to apply data analysis, visualization, and problem-solving
+      abilities. Eager to contribute to data-driven decision-making and support business growth by transforming raw data into
+      actionable insights.
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="section-title">Education</div>
+    <div class="education-timeline">
+      <div class="education-item">
+        <div class="education-degree">B.Com. Information Technology</div>
+        <div class="education-meta">Kaamadhenu Arts and Science College, Sathyamangalam</div>
+        <div class="education-desc">2022-2025 | CGPA: 8.1 </div>
+      </div>
+      <div class="education-item">
+        <div class="education-degree">Higher Secondary Certificate(HSC)</div>
+        <div class="education-meta">Government Higher Secondary School, Kanakkampalayam, Tirupur</div>
+        <div class="education-desc">2022 | Percentage: 88.3%</div>
+      </div>
+      <div class="education-item">
+        <div class="education-degree">SSLC</div>
+        <div class="education-meta">Government Higher Secondary School, Kanakkampalayam, Tirupur</div>
+        <div class="education-desc">2020 | Percentage: 88.6%</div>
+      </div>
     </div>
   </section>
 
@@ -207,32 +428,36 @@
     <div class="section-title">Top Projects</div>
     <div class="projects-grid">
       <div class="project-card">
+        <img class="project-img" src="Subplots.png" alt="Cafe Sales Analysis Project Image" />
         <div class="project-title">Cafe Sales Analysis</div>
         <div>
-          Data analysis project for a cafe, using Python and visualization tools to uncover trends and insights from sales data.
+          Data analysis project for a cafe using Python, Pandas, and Matplotlib to generate actionable insights from sales data.
         </div>
         <a class="project-link" href="https://github.com/LoganathanR03/cafe-sales-analysis" target="_blank">View on GitHub</a>
       </div>
       <div class="project-card">
-        <div class="project-title">Portfolio Website</div>
+        <img class="project-img" src="library-shelf.jpg" alt="Books Management System Project Image" />
+        <div class="project-title">Books Management System</div>
         <div>
-          My personal portfolio site showcasing skills, projects, and achievements. Built with HTML, CSS, and JavaScript.
+          Full-stack web app for managing books, including CRUD operations, authentication, and responsive UI; built with PHP and MySQL.
         </div>
-        <a class="project-link" href="https://github.com/LoganathanR03/Portfolio" target="_blank">View on GitHub</a>
+        <a class="project-link" href="https://github.com/LoganathanR03/Books-Management-System" target="_blank">View on GitHub</a>
       </div>
       <div class="project-card">
+        <img class="project-img" src="https://placehold.co/240x140?text=URL+Shortener" alt="URL Shortener Project Image" />
         <div class="project-title">URL Shortener</div>
         <div>
-          A simple and efficient URL shortener application, featuring RESTful API and database integration.
+          A RESTful API-based URL shortener application using Node.js and MongoDB. Includes user authentication and analytics.
         </div>
         <a class="project-link" href="https://github.com/LoganathanR03/url-shortener" target="_blank">View on GitHub</a>
       </div>
       <div class="project-card">
-        <div class="project-title">Books Management System</div>
+        <img class="project-img" src="https://placehold.co/240x140?text=Portfolio+Website" alt="Portfolio Website Project Image" />
+        <div class="project-title">Portfolio Website</div>
         <div>
-          Full-stack system for managing books, including CRUD operations, authentication, and responsive UI.
+          Personal portfolio site built with HTML, CSS, and JavaScript, showcasing my education, skills, and projects.
         </div>
-        <a class="project-link" href="https://github.com/LoganathanR03/Books-Management-System" target="_blank">View on GitHub</a>
+        <a class="project-link" href="https://github.com/LoganathanR03/Portfolio" target="_blank">View on GitHub</a>
       </div>
     </div>
   </section>
@@ -241,30 +466,97 @@
     <div class="section-title">Skills</div>
     <div class="skills-list">
       <div class="skill-item">Python</div>
-      <div class="skill-item">JavaScript</div>
-      <div class="skill-item">HTML & CSS</div>
+      <div class="skill-item">Numpy</div>
+      <div class="skill-item">Pandas</div>
+      <div class="skill-item">Matplotlib</div>
+      <div class="skill-item">Seaborn</div>
       <div class="skill-item">SQL</div>
+      <div class="skill-item">Excel &amp; Sheets</div>
+       <div class="skill-item">MS Office</div>
       <div class="skill-item">Data Analysis</div>
-      <div class="skill-item">APIs</div>
-      <div class="skill-item">Git & GitHub</div>
+      <div class="skill-item">HTML &amp; CSS</div>
+      <div class="skill-item">JavaScript</div>
+      <div class="skill-item">Flask</div>
       <div class="skill-item">Automation</div>
+      <div class="skill-item">Git &amp; GitHub</div>
     </div>
   </section>
 
-  <section id="contact">
-    <div class="section-title">Contact</div>
-    <div class="contact-info">
-      Email: <a href="mailto:loganathanr03@gmail.com">logangreen1210@gmail.com</a><br>
-      LinkedIn: <a href="https://www.linkedin.com/in/loganathanr1210/">Loganathan R</a><br>
-      GitHub: <a href="https://github.com/LoganathanR03" target="_blank">LoganathanR03</a>
+  <section id="get-in-touch">
+    <div class="get-in-touch-title">Get In Touch</div>
+    <div class="get-in-touch-underline"></div>
+    <div class="get-in-touch-subtext">
+      I'm always interested in new opportunities and collaborations. Feel free to reach out for professional networking or project discussions!
+    </div>
+    <div class="get-in-touch-cards">
+      <div class="get-in-touch-card">
+        <div class="get-in-touch-icon">
+          <!-- Email SVG icon -->
+          <svg height="32" width="32" viewBox="0 0 24 24" fill="none"><path d="M21 4H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-9 6-9-6V6l9 6 9-6v2z" fill="#928dab"/></svg>
+        </div>
+        <div class="get-in-touch-label">Email</div>
+        <a href="mailto:logangreen1210@gmail.com" class="get-in-touch-link">logangreen1210@gmail.com</a>
+      </div>
+      <div class="get-in-touch-card">
+        <div class="get-in-touch-icon">
+          <!-- Phone SVG icon -->
+          <svg height="32" width="32" viewBox="0 0 24 24" fill="none"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.21a1.003 1.003 0 011.11-.27c1.12.45 2.33.69 3.58.69a1 1 0 011 1V20a1 1 0 01-1 1C7.61 21 3 16.39 3 10a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.24 2.46.69 3.58.15.39.02.82-.27 1.11l-2.21 2.2z" fill="#928dab"/></svg>
+        </div>
+        <div class="get-in-touch-label">Phone</div>
+        <div class="get-in-touch-link">+91 7708297427</div>
+      </div>
+      <div class="get-in-touch-card">
+        <div class="get-in-touch-icon">
+          <!-- Location SVG icon -->
+          <svg height="32" width="32" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z" fill="#928dab"/></svg>
+        </div>
+        <div class="get-in-touch-label">Location</div>
+        <div class="get-in-touch-link">Tirupur, Tamil Nadu, India</div>
+      </div>
+      <div class="get-in-touch-card">
+        <div class="get-in-touch-icon">
+          <!-- LinkedIn SVG icon -->
+          <svg height="32" width="32" fill="#928dab" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.3c-.97 0-1.75-.78-1.75-1.75s.78-1.75 1.75-1.75 1.75.78 1.75 1.75-.78 1.75-1.75 1.75zm13.5 11.3h-3v-5.6c0-1.34-.03-3.07-1.88-3.07-1.88 0-2.17 1.46-2.17 2.97v5.7h-3v-10h2.88v1.36h.04c.4-.76 1.36-1.56 2.8-1.56 3 0 3.56 1.98 3.56 4.56v5.64z"/></svg>
+        </div>
+        <div class="get-in-touch-label">LinkedIn</div>
+        <a href="https://www.linkedin.com/in/loganathanr1210" class="get-in-touch-link" target="_blank">Loganathan R</a>
+      </div>
+      <div class="get-in-touch-card">
+        <div class="get-in-touch-icon">
+          <!-- GitHub SVG icon -->
+          <svg height="32" width="32" fill="#928dab" viewBox="0 0 24 24"><path d="M12 .5c-6.6 0-12 5.4-12 12 0 5.3 3.4 9.7 8.1 11.2.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.5-4-1.5-.5-1.2-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1 1.6-.8 1.6-.8.8-1.3 2.2-1.1 2.7-.8.1-.6.3-1.1.6-1.3-2.7-.3-5.6-1.3-5.6-5.7 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.3 0 0 1.1-.3 3.4 1.2.9-.2 1.8-.3 2.7-.3s1.8.1 2.7.3c2.3-1.5 3.4-1.2 3.4-1.2.6 1.7.2 3 .1 3.3.7.8 1.2 1.9 1.2 3.2 0 4.4-2.8 5.4-5.6 5.7.3.2.5.6.5 1.2v1.7c0 .3.2.7.8.6 4.7-1.5 8.1-5.9 8.1-11.2 0-6.6-5.4-12-12-12z"/></svg>
+        </div>
+        <div class="get-in-touch-label">GitHub</div>
+        <a href="https://github.com/LoganathanR03" class="get-in-touch-link" target="_blank">LoganathanR03</a>
+      </div>
     </div>
   </section>
+
+  <footer class="main-footer">
+    <div class="footer-text">
+      © 2025 All rights reserved.<br>
+      Innovation one line<span style="color:#ff4d6d;">✨</span> at a time <span style="color:#928dab;">⌚</span>
+    </div>
+    <div class="footer-icons">
+      <a href="https://www.linkedin.com/in/loganathanr1210" target="_blank" title="LinkedIn">
+        <svg height="22" width="22" fill="#928dab" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.3c-.97 0-1.75-.78-1.75-1.75s.78-1.75 1.75-1.75 1.75.78 1.75 1.75-.78 1.75-1.75 1.75zm13.5 11.3h-3v-5.6c0-1.34-.03-3.07-1.88-3.07-1.88 0-2.17 1.46-2.17 2.97v5.7h-3v-10h2.88v1.36h.04c.4-.76 1.36-1.56 2.8-1.56 3 0 3.56 1.98 3.56 4.56v5.64z"/></svg>
+      </a>
+      <a href="https://github.com/LoganathanR03" target="_blank" title="GitHub">
+        <svg height="22" width="22" fill="#928dab" viewBox="0 0 24 24"><path d="M12 .5c-6.6 0-12 5.4-12 12 0 5.3 3.4 9.7 8.1 11.2.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.5-4-1.5-.5-1.2-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1 1.6-.8 1.6-.8.8-1.3 2.2-1.1 2.7-.8.1-.6.3-1.1.6-1.3-2.7-.3-5.6-1.3-5.6-5.7 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.3 0 0 1.1-.3 3.4 1.2.9-.2 1.8-.3 2.7-.3s1.8.1 2.7.3c2.3-1.5 3.4-1.2 3.4-1.2.6 1.7.2 3 .1 3.3.7.8 1.2 1.9 1.2 3.2 0 4.4-2.8 5.4-5.6 5.7.3.2.5.6.5 1.2v1.7c0 .3.2.7.8.6 4.7-1.5 8.1-5.9 8.1-11.2 0-6.6-5.4-12-12-12z"/></svg>
+      </a>
+      <a href="mailto:logangreen1210@gmail.com" target="_blank" title="Mail">
+        <svg height="22" width="22" fill="#928dab" viewBox="0 0 24 24"><path d="M19.8 4h-15.6c-.99 0-1.8.81-1.8 1.8v12.4c0 .99.81 1.8 1.8 1.8h15.6c.99 0 1.8-.81 1.8-1.8v-12.4c0-.99-.81-1.8-1.8-1.8zm-7.8 9.3c-.41 0-.81-.16-1.12-.46l-6.9-6.17c-.34-.3-.37-.84-.07-1.17.3-.34.84-.37 1.17-.07l6.4 5.73 6.4-5.73c.34-.3.87-.27 1.17.07.3.33.27.87-.07 1.17l-6.9 6.17c-.31.3-.71.46-1.12.46z"/></svg>
+      </a>
+    </div>
+  </footer>
 
   <script>
-    // Smooth scroll on nav clicks
+    // Smooth scroll on nav clicks & highlight nav
     document.querySelectorAll('nav a').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
+        document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+        this.classList.add('active');
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
           window.scrollTo({
