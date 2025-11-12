@@ -128,7 +128,7 @@
     .education-timeline {
       margin-top: 20px;
       border-left: 3px solid #ffd700;
-      padding-left: 30px;
+      padding-left: 28px;
     }
     .education-item {
       margin-bottom: 30px;
@@ -161,16 +161,20 @@
       font-size: 1em;
       margin-bottom: 4px;
     }
+    #projects {
+    }
+    
     .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 28px;
-      margin-top: 18px;
+      display: flex;
+      gap: 20px;
+      animation: scrollLoop 40s linear infinite;
+      width: max-content;
     }
     .project-card {
+      width: 300px;
       background: #232526;
-      border-radius: 16px;
-      padding: 24px 20px 18px 20px;
+      border-radius: 15px;
+      padding: 15px;
       box-shadow: 0 4px 24px rgba(0,0,0,0.19);
       transition: transform .3s, box-shadow .3s;
       cursor: pointer;
@@ -181,6 +185,9 @@
       flex-direction: column;
       align-items: center;
       border: 1.5px solid #928dab44;
+      text-align: left;
+      flex-shrink: 0;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
     .project-card.visible {
       opacity: 1;
@@ -192,6 +199,7 @@
       transform: translateY(-8px) scale(1.04);
       box-shadow: 0 8px 32px rgba(0,0,0,0.19);
       border-color: #ffd700;
+      animation-play-state: paused;
     }
     .project-img {
       width: 100%;
@@ -207,6 +215,7 @@
     }
     .project-card:hover .project-img {
       border: 2px solid #ffd700;
+      animation-play-state: paused;
     }
     .project-title {
       font-size: 1.3em;
@@ -227,6 +236,16 @@
     .project-link:hover {
       color: #ffd700;
       text-decoration: underline;
+    }
+    /* Infinity scroll animation */
+    @keyframes scrollLoop {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Pause animation on hover */
+    .projects-grid:hover .projects-card {
+      animation-play-state: paused;
     }
     .skills-list {
       display: flex;
@@ -712,5 +731,23 @@
       });
     });
   </script>
+  <script>
+  // Select the project grid
+  const projectsGrid = document.querySelector('.projects-grid');
+
+  // Duplicate the inner content twice to ensure seamless infinite loop
+  projectsGrid.innerHTML += projectsGrid.innerHTML;
+
+  // Optional: pause animation on hover
+  projectsGrid.addEventListener('mouseenter', () => {
+    projectsGrid.style.animationPlayState = 'paused';
+  });
+  projectsGrid.addEventListener('mouseleave', () => {
+    projectsGrid.style.animationPlayState = 'running';
+  });
+</script>
+
+  
+  
 </body>
 </html>
